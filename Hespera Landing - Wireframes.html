@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hespera — Landing Page Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Kalam:wght@300;400;700&family=Architects+Daughter&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#2c2a26;
+  --ink-soft:#6f6c64;
+  --paper:#faf9f4;
+  --line:#cdcabc;
+  --bar:#dedcd0;
+  --bar2:#e9e7dd;
+  /* brand greens / golds (only shown when .color is on) */
+  --g-dark:#294317;
+  --g-mid:#91b975;
+  --g-soft:#dfe1bc;
+  --gold:#e8bb3b;
+  --gold-soft:#ead868;
+  --accent:var(--ink);      /* swapped to green when color on */
+  --accent2:var(--ink);     /* swapped to gold when color on */
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:'Kalam',cursive;
+  color:var(--ink);
+  background:#e7e5db;
+  background-image:radial-gradient(circle, #d3d1c5 1px, transparent 1px);
+  background-size:22px 22px;
+}
+body.color{ --accent:var(--g-dark); --accent2:#b78f17; }
+
+/* ---------- top chrome ---------- */
+.chrome{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  padding:12px 20px;
+  background:#1f1e1b;color:#f3f1e8;
+  border-bottom:2px solid #000;
+}
+.chrome .brand{font-family:'Caveat';font-size:26px;font-weight:700;letter-spacing:.5px;display:flex;align-items:center;gap:9px}
+.chrome .brand .dot{width:14px;height:14px;border-radius:0 60% 0 60%;background:#f3f1e8;transform:rotate(-15deg)}
+body.color .chrome .brand .dot{background:var(--gold-soft)}
+.chrome .sub{font-family:'Kalam';font-size:12.5px;opacity:.6}
+.tabs{display:flex;gap:8px;margin-left:6px}
+.tab{
+  font-family:'Caveat';font-size:19px;
+  background:transparent;color:#cdcabc;
+  border:2px solid #4a473f;border-radius:20px 7px 22px 8px/8px 22px 7px 20px;
+  padding:5px 16px;cursor:pointer;transition:.15s;line-height:1;
+}
+.tab:hover{color:#f3f1e8;border-color:#7d796d}
+.tab.on{background:#f3f1e8;color:#1f1e1b;border-color:#f3f1e8}
+body.color .tab.on{background:var(--gold-soft);border-color:var(--gold-soft)}
+.toggles{margin-left:auto;display:flex;gap:16px;align-items:center}
+.tg{display:flex;align-items:center;gap:7px;font-family:'Kalam';font-size:13px;color:#cdcabc;cursor:pointer;user-select:none}
+.tg input{display:none}
+.tg .sw{width:34px;height:18px;border-radius:10px;border:2px solid #5a574e;background:#2a2823;position:relative;transition:.15s}
+.tg .sw::after{content:"";position:absolute;top:1px;left:1px;width:12px;height:12px;border-radius:50%;background:#cdcabc;transition:.15s}
+.tg input:checked + .sw{background:#6a7d45;border-color:#9fb46c}
+.tg input:checked + .sw::after{left:17px;background:#f3f1e8}
+
+/* ---------- stage / page ---------- */
+.stage{height:calc(100vh - 53px);overflow-y:auto;overflow-x:hidden;padding:30px 0 80px;scroll-behavior:smooth}
+.page{display:none;margin:0 auto;width:min(1080px,94vw);}
+.page.on{display:block}
+.frame{
+  background:var(--paper);
+  border:2px solid var(--ink);
+  border-radius:18px 8px 20px 9px/9px 20px 8px 18px;
+  box-shadow:7px 9px 0 rgba(44,42,38,.12);
+  overflow:hidden;
+}
+.browserbar{display:flex;align-items:center;gap:7px;padding:9px 13px;border-bottom:2px dashed var(--line);background:#f2f0e8}
+.browserbar i{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);display:inline-block}
+.browserbar .url{margin-left:10px;font-family:'Architects Daughter';font-size:12px;color:var(--ink-soft);border:2px solid var(--line);border-radius:40px;padding:3px 14px;flex:1;max-width:380px}
+
+/* sketch primitives */
+.sk{border:2px solid var(--ink);background:#fff;border-radius:255px 12px 225px 14px/14px 225px 12px 255px}
+.sk-r{border-radius:12px 255px 14px 225px/225px 14px 255px 12px}
+.dash{border:2px dashed var(--line)}
+.bar{height:11px;border-radius:6px;background:var(--bar);display:block}
+.bar.sm{height:8px}
+.bar.lg{height:15px}
+.bar.t{background:var(--bar2)}
+.w90{width:90%}.w80{width:80%}.w70{width:70%}.w60{width:60%}.w50{width:50%}.w40{width:40%}.w30{width:30%}.w25{width:25%}
+.stack>*{margin-top:9px}
+.muted{color:var(--ink-soft)}
+.mono{font-family:'Architects Daughter';font-size:11.5px;letter-spacing:.4px}
+.hand{font-family:'Caveat'}
+h1,h2,h3{margin:0;font-family:'Caveat';font-weight:700;line-height:1.02}
+.eyebrow{font-family:'Architects Daughter';font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'Caveat';font-size:20px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:8px 20px;border-radius:22px 8px 22px 8px/8px 22px 8px 22px;line-height:1}
+body.color .btn{background:var(--g-dark);border-color:var(--g-dark)}
+.btn.ghost{background:transparent;color:var(--ink)}
+body.color .btn.ghost{color:var(--g-dark)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:'Kalam';font-size:13px;border:2px solid var(--ink);border-radius:30px;padding:4px 13px;background:#fff}
+.chip .d{width:8px;height:8px;border-radius:50%;background:var(--ink)}
+body.color .chip .d{background:var(--g-mid)}
+
+/* section scaffolding */
+section.s{padding:46px 48px;border-bottom:2px dashed var(--line);position:relative}
+.label-pill{position:absolute;top:-1px;left:0;font-family:'Architects Daughter';font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:3px 9px;border-radius:0 0 9px 0}
+body.color .label-pill{background:var(--g-dark)}
+.grid{display:grid;gap:18px}
+.center{text-align:center}
+.flexrow{display:flex;gap:16px}
+.between{justify-content:space-between;align-items:center}
+
+/* ---------- leaf + scan lens ---------- */
+.scene{position:relative;cursor:none;touch-action:none}
+.leaf{
+  position:relative;width:300px;height:300px;margin:0 auto;
+  background:#fff;border:2.5px solid var(--ink);
+  border-radius:6px 80% 6px 80%/80% 6px 80% 6px;
+  transform:rotate(-8deg);
+}
+body.color .leaf{background:linear-gradient(150deg,#f3f6ec,#e4ead6);border-color:var(--g-dark)}
+.leaf::before{content:"";position:absolute;top:8%;left:50%;width:2px;height:84%;background:var(--line);transform:translateX(-50%) rotate(8deg);transform-origin:center}
+.leaf .vein{position:absolute;left:50%;width:34%;height:2px;background:var(--line);transform-origin:left center}
+.scene .sig{
+  position:absolute;display:flex;flex-direction:column;align-items:center;gap:3px;
+  opacity:0;transition:opacity .18s;pointer-events:none;transform:translate(-50%,-50%);text-align:center;z-index:3;
+}
+.scene .sig .node{width:16px;height:16px;border-radius:50%;border:2px dashed var(--ink);background:rgba(255,255,255,.7)}
+body.color .scene .sig .node{border-color:var(--g-dark);background:rgba(145,185,117,.35)}
+.scene .sig small{font-family:'Architects Daughter';font-size:10px;color:var(--ink);white-space:nowrap;background:var(--paper);padding:1px 5px;border:1px solid var(--line);border-radius:8px}
+.lens{
+  position:absolute;top:0;left:0;width:128px;height:128px;margin:-64px 0 0 -64px;
+  border-radius:50%;border:3px solid var(--ink);
+  box-shadow:0 0 0 2px var(--paper),0 8px 20px rgba(0,0,0,.18),inset 0 0 0 1px rgba(0,0,0,.15);
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.35), rgba(255,255,255,0) 60%);
+  pointer-events:none;opacity:0;transition:opacity .15s;z-index:4;
+}
+body.color .lens{border-color:var(--g-dark)}
+.lens::after{content:"";position:absolute;right:-26px;bottom:-22px;width:34px;height:7px;border-radius:6px;background:var(--ink);transform:rotate(42deg);box-shadow:0 0 0 2px var(--paper)}
+body.color .lens::after{background:var(--g-dark)}
+.scanhint{font-family:'Architects Daughter';font-size:11px;color:var(--ink-soft)}
+
+/* rotating headline */
+.rotwrap{display:inline-flex;align-items:baseline;gap:.28em;flex-wrap:wrap;justify-content:center}
+.rot{position:relative;color:var(--ink)}
+body.color .rot{color:var(--g-dark)}
+.rot::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:3px;background:var(--line);border-radius:3px}
+body.color .rot::after{background:var(--gold)}
+.rot .word{display:inline-block;animation:rotword .35s ease}
+@keyframes rotword{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* annotations (toggle) */
+.anno{display:none}
+body.anno .anno{display:block}
+.note{
+  position:absolute;font-family:'Caveat';font-size:16px;color:#b4451f;line-height:1.05;max-width:190px;z-index:8;pointer-events:none;
+}
+body.color .note{color:#a85a12}
+.note.r{text-align:right}
+.note .arrow{display:block;font-size:20px}
+.cap{font-family:'Caveat';font-size:15px;color:#b4451f}
+body.color .cap{color:#9c5410}
+
+/* device / dashboard mock */
+.device{border:2.5px solid var(--ink);border-radius:14px;background:#fff;overflow:hidden}
+.device .top{display:flex;gap:6px;padding:8px 11px;border-bottom:2px solid var(--line);background:#f2f0e8;align-items:center}
+.device .top i{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink)}
+.tile{border:2px solid var(--line);border-radius:9px;padding:12px;background:#fff}
+.spark{height:46px;display:flex;align-items:flex-end;gap:4px}
+.spark span{flex:1;background:var(--bar);border-radius:3px 3px 0 0}
+body.color .spark span{background:var(--g-soft)}
+
+/* sidebar (Direction B) */
+.layout-b{display:flex}
+.sideb{width:188px;flex:none;border-right:2px solid var(--ink);background:#f2f0e8;padding:18px 14px;position:sticky;top:0;align-self:flex-start}
+.sideb .nav{display:flex;flex-direction:column;gap:4px;margin-top:14px}
+.sideb .nav a{font-family:'Architects Daughter';font-size:12px;color:var(--ink-soft);padding:6px 8px;border-radius:6px;text-decoration:none;border-left:2px solid transparent}
+.sideb .nav a.on{color:var(--ink);background:#fff;border-left-color:var(--ink)}
+body.color .sideb .nav a.on{border-left-color:var(--g-mid)}
+.b-main{flex:1;min-width:0}
+table.wf{width:100%;border-collapse:collapse;font-family:'Architects Daughter';font-size:12px}
+table.wf th,table.wf td{border:1.5px solid var(--line);padding:8px 11px;text-align:left}
+table.wf th{background:#f2f0e8;text-transform:uppercase;letter-spacing:1px;font-size:10.5px;color:var(--ink-soft)}
+.stat{width:9px;height:9px;border-radius:50%;display:inline-block;border:1.5px solid var(--ink);margin-right:6px}
+body.color .stat.hi{background:var(--gold)}
+body.color .stat.ok{background:var(--g-mid)}
+
+/* tabs filter (B) */
+.filtertabs{display:flex;gap:6px;flex-wrap:wrap}
+.ft{font-family:'Architects Daughter';font-size:12px;border:2px solid var(--line);border-radius:20px;padding:4px 12px;cursor:default;background:#fff}
+.ft.on{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+body.color .ft.on{background:var(--g-dark);border-color:var(--g-dark)}
+
+/* horizontal scroll cards (C) */
+.hscroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px}
+.hcard{flex:0 0 230px}
+
+/* timeline (C) */
+.timeline{position:relative;padding-left:54px}
+.timeline::before{content:"";position:absolute;left:21px;top:6px;bottom:6px;width:2px;border-left:2px dashed var(--line)}
+.tstep{position:relative;margin-bottom:30px}
+.tstep .num{position:absolute;left:-54px;top:-6px;width:42px;height:42px;border-radius:50%;border:2.5px solid var(--ink);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:'Caveat';font-size:24px;font-weight:700}
+body.color .tstep .num{border-color:var(--g-dark);color:var(--g-dark)}
+
+.footer-wf{padding:34px 48px;background:#1f1e1b;color:#cdcabc}
+.footer-wf .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+.footer-wf .bar{background:#3a382f}
+.footer-wf h3{color:#f3f1e8;font-size:22px}
+
+.legend{width:min(1080px,94vw);margin:14px auto 0;font-family:'Architects Daughter';font-size:11.5px;color:#6f6c64;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.legend b{color:#2c2a26}
+.flag{display:inline-block;width:11px;height:11px;border:2px solid #b4451f;border-radius:3px;vertical-align:-1px;margin-right:4px}
+</style>
+</head>
+<body>
+
+<header class="chrome">
+  <div class="brand"><span class="dot"></span>Hespera</div>
+  <span class="sub">Landing page · wireframes</span>
+  <div class="tabs">
+    <button class="tab on" data-dir="a">A · Instrument</button>
+    <button class="tab" data-dir="b">B · Dossier</button>
+    <button class="tab" data-dir="c">C · Field Guide</button>
+  </div>
+  <div class="toggles">
+    <label class="tg"><input type="checkbox" id="tgAnno" /><span class="sw"></span>Annotations</label>
+    <label class="tg"><input type="checkbox" id="tgColor" /><span class="sw"></span>Color hint</label>
+  </div>
+</header>
+
+<div class="legend">
+  <span><span class="flag"></span>orange notes = design intent</span>
+  <span><b>Hover the leaf</b> — the lens reveals hidden molecular signals</span>
+  <span>Headline word rotates automatically</span>
+</div>
+
+<div class="stage" id="stage">
+
+<!-- =================================================================== -->
+<!-- DIRECTION A — INSTRUMENT                                            -->
+<!-- =================================================================== -->
+<div class="page on" data-dir="a">
+  <div class="frame">
+    <div class="browserbar"><i></i><i></i><i></i><span class="url">hespera.food</span></div>
+
+    <!-- nav -->
+    <section class="s between" style="padding:18px 48px">
+      <div class="flexrow" style="align-items:center;gap:10px">
+        <span class="hand" style="font-size:24px;font-weight:700">Hespera</span>
+        <span class="mono muted">by AGCT</span>
+      </div>
+      <div class="flexrow" style="align-items:center;gap:22px">
+        <span class="bar w30" style="width:54px"></span>
+        <span class="bar w30" style="width:54px"></span>
+        <span class="bar w30" style="width:54px"></span>
+        <span class="btn">Get a demo</span>
+      </div>
+    </section>
+
+    <!-- HERO -->
+    <section class="s center" data-screen-label="A-hero" style="padding:54px 48px 40px">
+      <span class="label-pill">Hero</span>
+      <div class="eyebrow" style="margin-bottom:18px">Molecular intelligence infrastructure for food</div>
+      <h1 style="font-size:48px">
+        <span class="rotwrap">Actionable molecular intelligence
+          <span class="rot">for <span class="word" data-rot>growers</span></span>
+        </span>
+      </h1>
+      <div class="stack" style="max-width:620px;margin:22px auto 0">
+        <span class="bar w90" style="margin:0 auto"></span>
+        <span class="bar w80" style="margin:0 auto"></span>
+        <span class="bar w50" style="margin:0 auto"></span>
+      </div>
+      <div class="flexrow" style="justify-content:center;gap:14px;margin:26px 0 30px">
+        <span class="btn">Explore Molecular Intelligence</span>
+        <span class="btn ghost">See hidden risk →</span>
+      </div>
+
+      <!-- leaf scan scene -->
+      <div class="scene" style="height:360px;max-width:520px;margin:0 auto" data-scan>
+        <div class="leaf">
+          <span class="vein" style="top:26%;transform:translateX(-1px) rotate(38deg)"></span>
+          <span class="vein" style="top:42%;transform:translateX(-1px) rotate(28deg)"></span>
+          <span class="vein" style="top:58%;transform:translateX(-1px) rotate(18deg)"></span>
+          <span class="vein" style="top:74%;transform:translateX(-1px) rotate(8deg)"></span>
+        </div>
+        <div class="sig" style="left:38%;top:34%"><span class="node"></span><small>pathogen</small></div>
+        <div class="sig" style="left:60%;top:30%"><span class="node"></span><small>spoilage signal</small></div>
+        <div class="sig" style="left:30%;top:58%"><span class="node"></span><small>stress marker</small></div>
+        <div class="sig" style="left:66%;top:60%"><span class="node"></span><small>contamination</small></div>
+        <div class="sig" style="left:50%;top:74%"><span class="node"></span><small>molecular fingerprint</small></div>
+        <div class="sig" style="left:46%;top:46%"><span class="node"></span><small>cold-chain degr.</small></div>
+        <div class="lens"></div>
+        <div class="scanhint" style="position:absolute;left:50%;bottom:-2px;transform:translateX(-50%)">move cursor across the leaf to scan</div>
+      </div>
+
+      <div class="anno note r" style="top:230px;left:-2px">
+        <span class="arrow">↘</span>at rest the leaf looks perfectly healthy
+      </div>
+      <div class="anno note" style="top:330px;right:-6px">cursor → magnifying lens<br>reveals invisible biology<span class="arrow">↙</span></div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="s" data-screen-label="A-how">
+      <span class="label-pill">How it works</span>
+      <h2 class="center" style="font-size:32px;margin-bottom:6px">From sample to decision</h2>
+      <p class="center muted hand" style="font-size:17px;margin:0 0 28px">Three steps, one continuous signal</p>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="sk" style="padding:20px"><div class="hand" style="font-size:22px;font-weight:700">01 · Scan</div><div class="stack" style="margin-top:10px"><span class="bar w80"></span><span class="bar w90"></span><span class="bar w60"></span></div></div>
+        <div class="sk-r" style="border:2px solid var(--ink);padding:20px"><div class="hand" style="font-size:22px;font-weight:700">02 · Signal</div><div class="stack" style="margin-top:10px"><span class="bar w90"></span><span class="bar w70"></span><span class="bar w80"></span></div></div>
+        <div class="sk" style="padding:20px"><div class="hand" style="font-size:22px;font-weight:700">03 · Decision</div><div class="stack" style="margin-top:10px"><span class="bar w70"></span><span class="bar w90"></span><span class="bar w50"></span></div></div>
+      </div>
+      <div class="anno note" style="top:60px;right:30px">horizontal trio,<br>arrows between<span class="arrow">→</span></div>
+    </section>
+
+    <!-- WHAT IT DETECTS -->
+    <section class="s" data-screen-label="A-detects">
+      <span class="label-pill">What it detects</span>
+      <h2 style="font-size:30px;margin-bottom:18px">Risk, before it becomes damage</h2>
+      <div class="flexrow" style="flex-wrap:wrap;gap:12px">
+        <span class="chip"><span class="d"></span>Pathogens</span>
+        <span class="chip"><span class="d"></span>Spoilage signals</span>
+        <span class="chip"><span class="d"></span>Contamination risk</span>
+        <span class="chip"><span class="d"></span>Crop stress markers</span>
+        <span class="chip"><span class="d"></span>Cold-chain degradation</span>
+        <span class="chip"><span class="d"></span>Food safety threats</span>
+        <span class="chip"><span class="d"></span>Molecular fingerprints</span>
+        <span class="chip"><span class="d"></span>Quality risk factors</span>
+      </div>
+    </section>
+
+    <!-- WHO IT SERVES -->
+    <section class="s" data-screen-label="A-serves">
+      <span class="label-pill">Who it serves</span>
+      <h2 class="center" style="font-size:30px;margin-bottom:22px">Built for operational teams</h2>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:14px">
+        <div class="dash center" style="padding:18px 10px;border-radius:10px"><div class="sk" style="width:34px;height:34px;margin:0 auto 10px"></div><span class="hand" style="font-size:18px">Growers</span></div>
+        <div class="dash center" style="padding:18px 10px;border-radius:10px"><div class="sk" style="width:34px;height:34px;margin:0 auto 10px"></div><span class="hand" style="font-size:18px">Processors</span></div>
+        <div class="dash center" style="padding:18px 10px;border-radius:10px"><div class="sk" style="width:34px;height:34px;margin:0 auto 10px"></div><span class="hand" style="font-size:18px">Cold storage</span></div>
+        <div class="dash center" style="padding:18px 10px;border-radius:10px"><div class="sk" style="width:34px;height:34px;margin:0 auto 10px"></div><span class="hand" style="font-size:18px">Packers</span></div>
+        <div class="dash center" style="padding:18px 10px;border-radius:10px"><div class="sk" style="width:34px;height:34px;margin:0 auto 10px"></div><span class="hand" style="font-size:18px">Distributors</span></div>
+        <div class="dash center" style="padding:18px 10px;border-radius:10px"><div class="sk" style="width:34px;height:34px;margin:0 auto 10px"></div><span class="hand" style="font-size:18px">QA teams</span></div>
+        <div class="dash center" style="padding:18px 10px;border-radius:10px"><div class="sk" style="width:34px;height:34px;margin:0 auto 10px"></div><span class="hand" style="font-size:18px">Scientists</span></div>
+        <div class="dash center" style="padding:18px 10px;border-radius:10px"><div class="sk" style="width:34px;height:34px;margin:0 auto 10px"></div><span class="hand" style="font-size:18px">Supply chain</span></div>
+      </div>
+    </section>
+
+    <!-- PRODUCT PREVIEW -->
+    <section class="s" data-screen-label="A-product">
+      <span class="label-pill">Product preview</span>
+      <h2 class="center" style="font-size:30px;margin-bottom:20px">Signal, not raw lab data</h2>
+      <div class="device" style="max-width:760px;margin:0 auto">
+        <div class="top"><i></i><i></i><i></i><span class="mono muted" style="margin-left:8px">hespera · molecular console</span></div>
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:0">
+          <div style="border-right:2px solid var(--line);padding:14px;display:flex;flex-direction:column;gap:8px"><span class="bar w80"></span><span class="bar w60"></span><span class="bar w70"></span><span class="bar w50"></span><span class="bar w60"></span></div>
+          <div style="padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="tile"><span class="mono muted">risk index</span><div class="spark" style="margin-top:8px"><span style="height:40%"></span><span style="height:60%"></span><span style="height:30%"></span><span style="height:80%"></span><span style="height:55%"></span><span style="height:70%"></span><span style="height:45%"></span></div></div>
+            <div class="tile"><span class="mono muted">signal map</span><div class="stack" style="margin-top:8px"><span class="bar w90"></span><span class="bar w70"></span><span class="bar w80"></span></div></div>
+            <div class="tile" style="grid-column:1/3"><span class="mono muted">detections over time</span><div class="spark" style="margin-top:8px"><span style="height:30%"></span><span style="height:45%"></span><span style="height:65%"></span><span style="height:50%"></span><span style="height:75%"></span><span style="height:60%"></span><span style="height:85%"></span><span style="height:55%"></span><span style="height:70%"></span><span style="height:90%"></span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="anno note" style="bottom:36px;left:20px">placeholder for real<br>dashboard screenshot<span class="arrow">↗</span></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="s center" data-screen-label="A-cta" style="background:#f2f0e8">
+      <span class="label-pill">Final CTA</span>
+      <h2 style="font-size:34px;margin-bottom:8px">See what others can't.</h2>
+      <p class="muted hand center" style="font-size:18px;max-width:480px;margin:0 auto 22px">Molecular intelligence for food, built by growers.</p>
+      <span class="btn" style="font-size:22px">Molecular Intelligence for Food</span>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-wf">
+      <div class="cols">
+        <div><h3>Hespera</h3><div class="stack" style="margin-top:12px"><span class="bar w80"></span><span class="bar w60"></span></div></div>
+        <div class="stack"><span class="bar w60"></span><span class="bar w80"></span><span class="bar w50"></span><span class="bar w70"></span></div>
+        <div class="stack"><span class="bar w70"></span><span class="bar w50"></span><span class="bar w80"></span><span class="bar w60"></span></div>
+        <div class="stack"><span class="bar w50"></span><span class="bar w70"></span><span class="bar w60"></span></div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- =================================================================== -->
+<!-- DIRECTION B — DOSSIER (Palantir-dense)                              -->
+<!-- =================================================================== -->
+<div class="page" data-dir="b">
+  <div class="frame">
+    <div class="browserbar"><i></i><i></i><i></i><span class="url">hespera.food</span></div>
+    <div class="layout-b">
+      <!-- sidebar -->
+      <aside class="sideb">
+        <div class="flexrow" style="align-items:center;gap:8px"><span class="dot" style="width:13px;height:13px;border-radius:0 60% 0 60%;background:var(--ink);transform:rotate(-15deg);display:inline-block"></span><span class="hand" style="font-size:21px;font-weight:700">Hespera</span></div>
+        <div class="mono muted" style="margin-top:3px">MOLECULAR INTELLIGENCE</div>
+        <nav class="nav">
+          <a class="on">01 / OVERVIEW</a>
+          <a>02 / HOW IT WORKS</a>
+          <a>03 / DETECTION</a>
+          <a>04 / SECTORS</a>
+          <a>05 / CONSOLE</a>
+          <a>06 / REQUEST ACCESS</a>
+        </nav>
+        <div class="dash" style="margin-top:20px;border-radius:8px;padding:10px"><div class="mono muted">SYSTEM STATUS</div><div class="stack" style="margin-top:8px"><span class="bar sm w90"></span><span class="bar sm w70"></span></div></div>
+      </aside>
+
+      <div class="b-main">
+        <!-- HERO -->
+        <section class="s" data-screen-label="B-hero" style="padding:40px 40px 34px">
+          <span class="label-pill">Hero</span>
+          <div class="mono muted" style="margin-bottom:14px">REF · HSP-001 &nbsp;|&nbsp; FARM → FORK &nbsp;|&nbsp; 38°N 121°W</div>
+          <div class="flexrow" style="gap:30px;align-items:center">
+            <div style="flex:1.3">
+              <h1 style="font-size:40px;line-height:1.04">Actionable molecular intelligence
+                <span class="rot" style="display:inline-block">for <span class="word" data-rot>growers</span></span>
+              </h1>
+              <div class="stack" style="margin-top:18px;max-width:430px"><span class="bar w90"></span><span class="bar w80"></span><span class="bar w60"></span></div>
+              <div class="flexrow" style="gap:12px;margin-top:22px"><span class="btn">Scan the food system</span><span class="btn ghost">Read the brief →</span></div>
+              <div class="flexrow" style="gap:26px;margin-top:24px">
+                <div><div class="hand" style="font-size:26px;font-weight:700">7</div><span class="mono muted">signal classes</span></div>
+                <div><div class="hand" style="font-size:26px;font-weight:700">∞</div><span class="mono muted">samples</span></div>
+                <div><div class="hand" style="font-size:26px;font-weight:700">F→F</div><span class="mono muted">whole chain</span></div>
+              </div>
+            </div>
+            <!-- leaf scene, smaller, with telemetry -->
+            <div class="scene" style="flex:1;height:300px;min-width:260px" data-scan>
+              <div class="leaf" style="width:230px;height:230px;margin:24px auto 0;transform:rotate(-6deg)">
+                <span class="vein" style="top:30%;transform:translateX(-1px) rotate(34deg)"></span>
+                <span class="vein" style="top:50%;transform:translateX(-1px) rotate(22deg)"></span>
+                <span class="vein" style="top:70%;transform:translateX(-1px) rotate(12deg)"></span>
+              </div>
+              <div class="sig" style="left:40%;top:34%"><span class="node"></span><small>P-04</small></div>
+              <div class="sig" style="left:62%;top:42%"><span class="node"></span><small>SPOIL</small></div>
+              <div class="sig" style="left:36%;top:62%"><span class="node"></span><small>STRESS</small></div>
+              <div class="sig" style="left:58%;top:66%"><span class="node"></span><small>CONTAM</small></div>
+              <div class="lens"></div>
+              <div class="mono" style="position:absolute;top:6px;left:6px;color:var(--ink-soft)">▣ LIVE SCAN</div>
+            </div>
+          </div>
+          <div class="anno note" style="top:90px;right:6px">dense telemetry framing,<br>monospace metadata<span class="arrow">↗</span></div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="s" data-screen-label="B-how" style="padding:34px 40px">
+          <span class="label-pill">How it works</span>
+          <h2 style="font-size:26px;margin-bottom:18px">Scan → Signal → Decision</h2>
+          <div class="flexrow" style="gap:0;align-items:stretch">
+            <div class="dash" style="flex:1;border-radius:8px;padding:14px"><div class="mono muted">STEP 01</div><div class="hand" style="font-size:20px;font-weight:700">Scan</div><div class="stack" style="margin-top:8px"><span class="bar sm w90"></span><span class="bar sm w70"></span></div></div>
+            <div style="display:flex;align-items:center;padding:0 6px;font-family:'Architects Daughter'">→</div>
+            <div class="dash" style="flex:1;border-radius:8px;padding:14px"><div class="mono muted">STEP 02</div><div class="hand" style="font-size:20px;font-weight:700">Signal</div><div class="stack" style="margin-top:8px"><span class="bar sm w90"></span><span class="bar sm w80"></span></div></div>
+            <div style="display:flex;align-items:center;padding:0 6px;font-family:'Architects Daughter'">→</div>
+            <div class="dash" style="flex:1;border-radius:8px;padding:14px"><div class="mono muted">STEP 03</div><div class="hand" style="font-size:20px;font-weight:700">Decision</div><div class="stack" style="margin-top:8px"><span class="bar sm w70"></span><span class="bar sm w60"></span></div></div>
+          </div>
+        </section>
+
+        <!-- WHAT IT DETECTS — data table -->
+        <section class="s" data-screen-label="B-detects" style="padding:34px 40px">
+          <span class="label-pill">What it detects</span>
+          <h2 style="font-size:26px;margin-bottom:16px">Detection registry</h2>
+          <table class="wf">
+            <thead><tr><th>Signal</th><th>Stage</th><th>Window</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Pathogen load</td><td>Field / Wash</td><td>Pre-symptom</td><td><span class="stat hi"></span>flag</td></tr>
+              <tr><td>Spoilage onset</td><td>Cold storage</td><td>72h ahead</td><td><span class="stat ok"></span>watch</td></tr>
+              <tr><td>Contamination risk</td><td>Processing</td><td>Inline</td><td><span class="stat hi"></span>flag</td></tr>
+              <tr><td>Crop stress marker</td><td>Field</td><td>Early</td><td><span class="stat ok"></span>watch</td></tr>
+              <tr><td>Cold-chain degradation</td><td>Transit</td><td>Continuous</td><td><span class="stat ok"></span>watch</td></tr>
+              <tr><td>Molecular fingerprint</td><td>Any</td><td>On demand</td><td><span class="stat"></span>ref</td></tr>
+            </tbody>
+          </table>
+          <div class="anno note" style="top:54px;right:6px">data-table density,<br>not marketing cards<span class="arrow">→</span></div>
+        </section>
+
+        <!-- WHO IT SERVES — filter tabs -->
+        <section class="s" data-screen-label="B-serves" style="padding:34px 40px">
+          <span class="label-pill">Who it serves</span>
+          <h2 style="font-size:26px;margin-bottom:14px">Sectors</h2>
+          <div class="filtertabs" style="margin-bottom:16px">
+            <span class="ft on">Growers</span><span class="ft">Processors</span><span class="ft">Cold storage</span><span class="ft">Packers</span><span class="ft">Distributors</span><span class="ft">QA / Safety</span><span class="ft">Scientists</span>
+          </div>
+          <div class="dash" style="border-radius:10px;padding:18px;display:grid;grid-template-columns:1.4fr 1fr;gap:18px">
+            <div class="stack"><div class="hand" style="font-size:20px;font-weight:700">For growers</div><span class="bar w90"></span><span class="bar w80"></span><span class="bar w70"></span><span class="bar w50"></span></div>
+            <div class="tile"><span class="mono muted">use case</span><div class="stack" style="margin-top:8px"><span class="bar w80"></span><span class="bar w60"></span></div></div>
+          </div>
+        </section>
+
+        <!-- CONSOLE -->
+        <section class="s" data-screen-label="B-product" style="padding:34px 40px">
+          <span class="label-pill">Product preview</span>
+          <h2 style="font-size:26px;margin-bottom:16px">Molecular console</h2>
+          <div class="device">
+            <div class="top"><i></i><i></i><i></i><span class="mono muted" style="margin-left:8px">console · ops view</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0">
+              <div style="border-right:2px solid var(--line);padding:14px"><span class="mono muted">QUEUE</span><div class="stack" style="margin-top:8px"><span class="bar sm w90"></span><span class="bar sm w70"></span><span class="bar sm w80"></span><span class="bar sm w60"></span><span class="bar sm w90"></span></div></div>
+              <div style="border-right:2px solid var(--line);padding:14px"><span class="mono muted">SIGNAL MAP</span><div class="spark" style="margin-top:10px"><span style="height:40%"></span><span style="height:70%"></span><span style="height:55%"></span><span style="height:85%"></span><span style="height:60%"></span><span style="height:75%"></span></div></div>
+              <div style="padding:14px"><span class="mono muted">ALERTS</span><div class="stack" style="margin-top:8px"><span class="bar sm w80"></span><span class="bar sm w60"></span><span class="bar sm w70"></span></div></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA strip -->
+        <section class="s between" data-screen-label="B-cta" style="padding:26px 40px;background:#f2f0e8">
+          <span class="label-pill">Final CTA</span>
+          <div><h2 style="font-size:24px">Request access</h2><span class="mono muted">molecular intelligence for the food system</span></div>
+          <span class="btn">Molecular Intelligence for Food</span>
+        </section>
+
+        <footer class="footer-wf" style="padding:26px 40px">
+          <div class="cols" style="grid-template-columns:1.4fr 1fr 1fr 1fr">
+            <div><h3 style="font-size:19px">Hespera · by AGCT</h3><div class="stack" style="margin-top:10px"><span class="bar w70"></span></div></div>
+            <div class="stack"><span class="bar w60"></span><span class="bar w80"></span><span class="bar w50"></span></div>
+            <div class="stack"><span class="bar w70"></span><span class="bar w50"></span><span class="bar w60"></span></div>
+            <div class="stack"><span class="bar w50"></span><span class="bar w70"></span></div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================================================================== -->
+<!-- DIRECTION C — FIELD GUIDE (editorial, spacious)                     -->
+<!-- =================================================================== -->
+<div class="page" data-dir="c">
+  <div class="frame">
+    <div class="browserbar"><i></i><i></i><i></i><span class="url">hespera.food</span></div>
+
+    <!-- minimal nav -->
+    <section class="s between" style="padding:22px 60px;border-bottom:none">
+      <span class="hand" style="font-size:24px;font-weight:700">Hespera</span>
+      <div class="flexrow" style="gap:24px;align-items:center"><span class="bar" style="width:48px"></span><span class="bar" style="width:48px"></span><span class="btn ghost">Demo</span></div>
+    </section>
+
+    <!-- HERO — airy -->
+    <section class="s center" data-screen-label="C-hero" style="padding:30px 60px 60px;border-bottom:none">
+      <span class="label-pill">Hero</span>
+      <h1 style="font-size:60px;line-height:1.0;max-width:880px;margin:10px auto 0">
+        Actionable molecular intelligence
+        <span class="rot" style="display:inline-block">for <span class="word" data-rot>growers</span></span>
+      </h1>
+      <p class="muted hand" style="font-size:20px;max-width:560px;margin:24px auto 0">Helping growers, processors, cold storage teams, packers and scientists detect hidden risks — from farm to facility.</p>
+
+      <div class="scene" style="height:430px;max-width:560px;margin:34px auto 0" data-scan>
+        <div class="leaf" style="width:360px;height:360px;margin:0 auto;transform:rotate(-7deg)">
+          <span class="vein" style="top:24%;transform:translateX(-1px) rotate(40deg)"></span>
+          <span class="vein" style="top:40%;transform:translateX(-1px) rotate(30deg)"></span>
+          <span class="vein" style="top:56%;transform:translateX(-1px) rotate(20deg)"></span>
+          <span class="vein" style="top:72%;transform:translateX(-1px) rotate(10deg)"></span>
+        </div>
+        <div class="sig" style="left:40%;top:30%"><span class="node"></span><small>pathogen</small></div>
+        <div class="sig" style="left:62%;top:36%"><span class="node"></span><small>spoilage signal</small></div>
+        <div class="sig" style="left:32%;top:56%"><span class="node"></span><small>stress marker</small></div>
+        <div class="sig" style="left:64%;top:62%"><span class="node"></span><small>contamination</small></div>
+        <div class="sig" style="left:48%;top:74%"><span class="node"></span><small>molecular fingerprint</small></div>
+        <div class="lens"></div>
+      </div>
+      <div class="flexrow" style="justify-content:center;margin-top:22px"><span class="btn" style="font-size:22px">Explore Molecular Intelligence</span></div>
+      <div class="anno note" style="top:120px;left:10px">huge type, generous<br>whitespace, leaf as<br>specimen<span class="arrow">↓</span></div>
+    </section>
+
+    <!-- HOW IT WORKS — vertical timeline -->
+    <section class="s" data-screen-label="C-how" style="padding:50px 90px">
+      <span class="label-pill">How it works</span>
+      <h2 style="font-size:34px;margin-bottom:30px">A continuous signal, farm to fork</h2>
+      <div class="timeline">
+        <div class="tstep"><span class="num">1</span><div class="hand" style="font-size:24px;font-weight:700">Scan the sample</div><div class="stack" style="margin-top:8px;max-width:520px"><span class="bar w90"></span><span class="bar w70"></span></div></div>
+        <div class="tstep"><span class="num">2</span><div class="hand" style="font-size:24px;font-weight:700">Read the signal</div><div class="stack" style="margin-top:8px;max-width:520px"><span class="bar w80"></span><span class="bar w60"></span></div></div>
+        <div class="tstep"><span class="num">3</span><div class="hand" style="font-size:24px;font-weight:700">Make the decision</div><div class="stack" style="margin-top:8px;max-width:520px"><span class="bar w90"></span><span class="bar w50"></span></div></div>
+      </div>
+    </section>
+
+    <!-- WHO IT SERVES — horizontal scroll cards -->
+    <section class="s" data-screen-label="C-serves" style="padding:46px 60px">
+      <span class="label-pill">Who it serves</span>
+      <h2 style="font-size:30px;margin-bottom:20px">For everyone touching the food chain</h2>
+      <div class="hscroll">
+        <div class="sk hcard" style="padding:18px"><div class="hand" style="font-size:22px;font-weight:700">Growers</div><div class="stack" style="margin-top:10px"><span class="bar w80"></span><span class="bar w90"></span><span class="bar w60"></span></div></div>
+        <div class="sk-r hcard" style="border:2px solid var(--ink);padding:18px"><div class="hand" style="font-size:22px;font-weight:700">Processors</div><div class="stack" style="margin-top:10px"><span class="bar w90"></span><span class="bar w70"></span><span class="bar w50"></span></div></div>
+        <div class="sk hcard" style="padding:18px"><div class="hand" style="font-size:22px;font-weight:700">Cold storage</div><div class="stack" style="margin-top:10px"><span class="bar w70"></span><span class="bar w90"></span><span class="bar w60"></span></div></div>
+        <div class="sk-r hcard" style="border:2px solid var(--ink);padding:18px"><div class="hand" style="font-size:22px;font-weight:700">Packers</div><div class="stack" style="margin-top:10px"><span class="bar w80"></span><span class="bar w60"></span></div></div>
+        <div class="sk hcard" style="padding:18px"><div class="hand" style="font-size:22px;font-weight:700">Scientists</div><div class="stack" style="margin-top:10px"><span class="bar w90"></span><span class="bar w70"></span><span class="bar w80"></span></div></div>
+      </div>
+      <div class="anno note" style="top:54px;right:30px">swipe → horizontal<br>scroll of sectors</div>
+    </section>
+
+    <!-- WHAT IT DETECTS — editorial specimen -->
+    <section class="s" data-screen-label="C-detects" style="padding:50px 60px">
+      <span class="label-pill">What it detects</span>
+      <div class="flexrow" style="gap:40px;align-items:center">
+        <div style="flex:1">
+          <h2 style="font-size:30px;margin-bottom:16px">The invisible, made legible</h2>
+          <div class="stack"><span class="chip"><span class="d"></span>Pathogens</span> <span class="chip"><span class="d"></span>Spoilage signals</span> <span class="chip"><span class="d"></span>Contamination risk</span> <span class="chip"><span class="d"></span>Crop stress markers</span> <span class="chip"><span class="d"></span>Cold-chain degradation</span> <span class="chip"><span class="d"></span>Molecular fingerprints</span></div>
+        </div>
+        <div class="scene" style="flex:1;height:240px;min-width:240px" data-scan>
+          <div class="leaf" style="width:200px;height:200px;margin:20px auto 0;transform:rotate(-9deg)">
+            <span class="vein" style="top:34%;transform:translateX(-1px) rotate(30deg)"></span>
+            <span class="vein" style="top:60%;transform:translateX(-1px) rotate(16deg)"></span>
+          </div>
+          <div class="sig" style="left:42%;top:40%"><span class="node"></span><small>pathogen</small></div>
+          <div class="sig" style="left:58%;top:60%"><span class="node"></span><small>stress</small></div>
+          <div class="lens"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT PREVIEW -->
+    <section class="s center" data-screen-label="C-product" style="padding:46px 60px">
+      <span class="label-pill">Product preview</span>
+      <h2 style="font-size:30px;margin-bottom:22px">From raw data to clear decisions</h2>
+      <div class="device" style="max-width:680px;margin:0 auto;transform:rotate(-1.2deg)">
+        <div class="top"><i></i><i></i><i></i></div>
+        <div style="padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="tile"><span class="mono muted">overview</span><div class="spark" style="margin-top:10px"><span style="height:50%"></span><span style="height:70%"></span><span style="height:40%"></span><span style="height:85%"></span><span style="height:60%"></span></div></div>
+          <div class="tile"><span class="mono muted">risk feed</span><div class="stack" style="margin-top:10px"><span class="bar w90"></span><span class="bar w70"></span><span class="bar w80"></span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA full bleed -->
+    <section class="s center" data-screen-label="C-cta" style="padding:64px 60px;background:#1f1e1b;color:#f3f1e8;border-bottom:none">
+      <span class="label-pill">Final CTA</span>
+      <h2 style="font-size:42px;color:#f3f1e8;max-width:680px;margin:0 auto 10px">Molecular intelligence for food, built by growers.</h2>
+      <div class="flexrow" style="justify-content:center;margin-top:24px"><span class="btn" style="background:#f3f1e8;color:#1f1e1b;border-color:#f3f1e8;font-size:22px">Scan the food system</span></div>
+    </section>
+
+    <footer class="footer-wf center" style="background:var(--paper);color:var(--ink-soft);border-top:2px dashed var(--line)">
+      <span class="hand" style="font-size:22px;color:var(--ink)">Hespera</span>
+      <div class="flexrow" style="justify-content:center;gap:18px;margin-top:14px"><span class="bar" style="width:50px"></span><span class="bar" style="width:50px"></span><span class="bar" style="width:50px"></span><span class="bar" style="width:50px"></span></div>
+    </footer>
+  </div>
+</div>
+
+</div><!-- /stage -->
+
+<script>
+// ---- tabs ----
+const tabs=[...document.querySelectorAll('.tab')];
+const pages=[...document.querySelectorAll('.page')];
+const stage=document.getElementById('stage');
+function show(d){
+  pages.forEach(p=>p.classList.toggle('on',p.dataset.dir===d));
+  tabs.forEach(t=>t.classList.toggle('on',t.dataset.dir===d));
+  stage.scrollTop=0;
+}
+tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.dir)));
+
+// ---- toggles ----
+document.getElementById('tgAnno').addEventListener('change',e=>document.body.classList.toggle('anno',e.target.checked));
+document.getElementById('tgColor').addEventListener('change',e=>document.body.classList.toggle('color',e.target.checked));
+
+// ---- rotating headline ----
+const words=['growers','food processors','cold storage operators','packers','distributors','food safety teams','scientists','QA teams','the food supply chain'];
+let wi=0;
+setInterval(()=>{
+  wi=(wi+1)%words.length;
+  document.querySelectorAll('[data-rot]').forEach(el=>{
+    el.textContent=words[wi];
+    el.style.animation='none'; void el.offsetWidth; el.style.animation='';
+  });
+},2200);
+
+// ---- leaf scan lens ----
+function initScan(scene){
+  const lens=scene.querySelector('.lens');
+  const sigs=[...scene.querySelectorAll('.sig')];
+  function move(e){
+    const r=scene.getBoundingClientRect();
+    const pt=e.touches?e.touches[0]:e;
+    const x=pt.clientX-r.left, y=pt.clientY-r.top;
+    lens.style.transform=`translate(${x}px,${y}px)`;
+    lens.style.opacity=1;
+    sigs.forEach(s=>{
+      const sx=s.offsetLeft+s.offsetWidth/2, sy=s.offsetTop+s.offsetHeight/2;
+      s.style.opacity = Math.hypot(sx-x,sy-y)<82 ? 1 : 0;
+    });
+  }
+  function leave(){lens.style.opacity=0;sigs.forEach(s=>s.style.opacity=0);}
+  scene.addEventListener('pointermove',move);
+  scene.addEventListener('pointerleave',leave);
+  scene.addEventListener('touchmove',e=>{e.preventDefault();move(e);},{passive:false});
+  scene.addEventListener('touchend',leave);
+}
+document.querySelectorAll('.scene[data-scan]').forEach(initScan);
+</script>
+</body>
+</html>
